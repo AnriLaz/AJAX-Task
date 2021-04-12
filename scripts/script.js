@@ -1,14 +1,47 @@
-// JSON
-// Java Script Object Notation
-//AJAX
-//Asynchronous Javascript And XML
-const button = document.getElementById('button');
-button.addEventListener('click',function (){
-    const myRequest = new XMLHttpRequest();
-    myRequest.open('GET','https://jsonplaceholder.typicode.com/photos');
-    myRequest.onload = function (){
-        const myData = JSON.parse(myRequest.responseText);
-        
+// function loadDoc() {
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             let myobj = JSON.parse('{ "albumId":"1", "id":1, "url":"https://via.placeholder.com/600/92c952"}');
+//             document.getElementById("demo").innerHTML = myobj.url;
+//         }
+//     };
+//     xhttp.open("GET", "https://jsonplaceholder.typicode.com/photos", true);
+//     xhttp.send();
+// }
+// let data = null
+let data = null;
+function print1(){
+    let table = "<table style=\"width:100%\">" +
+        "  <tr>" +
+        "    <th>name</th>" +
+        "    <th>image</th>" +
+        "  </tr>";
+    data.forEach( (x,i) =>{
+        if (i<5000){
+            table+="  <tr>" +
+                "    <td>"+x.title+"</td>" +
+                "    <td><img onclick=\"onimgclick('" + x.url + "')\" src='"+x.thumbnailUrl+"'/></td>" +
+                "  </tr>"
+        }
+    });
+    table+="</table>"
+    document.getElementById('table').innerHTML= table;
+}
+function onimgclick(url){
+    console.log(url)
+    window.open(url)
+}
+function loadDoc() {
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            data = JSON.parse(this.responseText);
+            print1()
+        }
     };
-    myRequest.send();
-});
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/photos", true);
+    xhttp.send();
+}
