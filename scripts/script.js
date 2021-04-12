@@ -1,15 +1,3 @@
-// function loadDoc() {
-//     var xhttp = new XMLHttpRequest();
-//     xhttp.onreadystatechange = function() {
-//         if (this.readyState == 4 && this.status == 200) {
-//             let myobj = JSON.parse('{ "albumId":"1", "id":1, "url":"https://via.placeholder.com/600/92c952"}');
-//             document.getElementById("demo").innerHTML = myobj.url;
-//         }
-//     };
-//     xhttp.open("GET", "https://jsonplaceholder.typicode.com/photos", true);
-//     xhttp.send();
-// }
-// let data = null
 let data = null;
 function print1(){
     let table = "<table style=\"width:100%\">" +
